@@ -17,26 +17,26 @@ nlp=spacy.load('en_core_web_sm')
 
 """# Text Rank Algorithm
 """
+if __name__ == '__main__':
+    text="""Lion and Lioness are roaring and sleeping"""
 
-text="""Lion and Lioness are roaring and sleeping"""
+    punctuations="?:!.,;"
 
-punctuations="?:!.,;"
+    # Tokenize everything
 
-# Tokenize everything
+    sentence_words = nltk.word_tokenize(text)
+    str2=''
+    for word in sentence_words:
+        if word not in punctuations and  word not in stopwords.words('english'):
+            str2=str2+' '+word
+    text=str2
 
-sentence_words = nltk.word_tokenize(text)
-str2=''
-for word in sentence_words:
-    if word not in punctuations and  word not in stopwords.words('english'):
-        str2=str2+' '+word
-text=str2
+    # Here we will add the text required on which NLP will take place
+    # We add a pipeline at the start of every run
+    nlp.add_pipe("textrank")
 
-# Here we will add the text required on which NLP will take place
-# We add a pipeline at the start of every run
-nlp.add_pipe("textrank")
-
-#We reinitialise the model everytime
-doc=nlp(text)
+    #We reinitialise the model everytime
+    doc=nlp(text)
 
 #doc._.phrases
 
@@ -97,24 +97,6 @@ def link_sentence (doc, sent, lemma_graph, seen_lemma):
             visited_tokens.append(token.i)
             visited_nodes.append(node_id)
 
-lemma_graph = nx.Graph()
-seen_lemma = {}
-
-for sent in doc.sents:
-    link_sentence(doc, sent, lemma_graph, seen_lemma)
-    # break
-    # only test one sentence
-
-
-labels = {}
-keys = list(seen_lemma.keys())
-
-# Here we iterate through each sentence to construct their graph
-for i in range(len(seen_lemma)):
-    labels[i] = keys[i][0].lower()
-
-# This variable will store the rank of each node of the graph
-ranks = nx.pagerank(lemma_graph)
 
 # This function will collect all the words and give its rank
 def collect_phrases (chunk, phrases, counts):
@@ -159,34 +141,68 @@ def collect_phrases (chunk, phrases, counts):
         phrases[compound_key].add( (phrase, phrase_rank) )
         counts[compound_key] += 1
 
-phrases = {}
-counts = {}
+def get_keywords(text):
+    sentence_words = nltk.word_tokenize(text)
+    str2=''
+    for word in sentence_words:
+        if word not in punctuations and  word not in stopwords.words('english'):
+            str2=str2+' '+word
+    text=str2
 
-for chunk in doc.noun_chunks:
+    # Here we will add the text required on which NLP will take place
+    # We add a pipeline at the start of every run
+    nlp.add_pipe("textrank")
 
-    # here we collect all the phrases along with their frequency
-    collect_phrases(chunk, phrases, counts)
+    #We reinitialise the model everytime
+    doc=nlp(text)
 
-for ent in doc.ents:
-    collect_phrases(ent, phrases, counts)
+    lemma_graph = nx.Graph()
+    seen_lemma = {}
 
-min_phrases = {}
+    for sent in doc.sents:
+        link_sentence(doc, sent, lemma_graph, seen_lemma)
+        # break
+        # only test one sentence
 
-for compound_key, rank_tuples in phrases.items():
-    l = list(rank_tuples)
-    l.sort(key=operator.itemgetter(1), reverse=True)
-    phrase, rank = l[0]
-    count = counts[compound_key]
-    min_phrases[phrase] = (rank, count)
 
-list1=[]
-for node_id, rank in sorted(ranks.items(), key=lambda x: x[1], reverse=True):
-    list1.append(labels[node_id])
-#    print(labels[node_id], rank)
+    labels = {}
+    keys = list(seen_lemma.keys())
 
-""" # Returns the list of the ranked words """
+    # Here we iterate through each sentence to construct their graph
+    for i in range(len(seen_lemma)):
+        labels[i] = keys[i][0].lower()
 
-return list1
+    # This variable will store the rank of each node of the graph
+    ranks = nx.pagerank(lemma_graph)
+
+    phrases = {}
+    counts = {}
+
+    for chunk in doc.noun_chunks:
+
+        # here we collect all the phrases along with their frequency
+        collect_phrases(chunk, phrases, counts)
+
+    for ent in doc.ents:
+        collect_phrases(ent, phrases, counts)
+
+    min_phrases = {}
+
+    for compound_key, rank_tuples in phrases.items():
+        l = list(rank_tuples)
+        l.sort(key=operator.itemgetter(1), reverse=True)
+        phrase, rank = l[0]
+        count = counts[compound_key]
+        min_phrases[phrase] = (rank, count)
+
+    list1=[]
+    for node_id, rank in sorted(ranks.items(), key=lambda x: x[1], reverse=True):
+        list1.append(labels[node_id])
+    #    print(labels[node_id], rank)
+
+    """ # Returns the list of the ranked words """
+
+    return list1
 
 """ 
 TODO:
