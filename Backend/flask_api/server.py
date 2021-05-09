@@ -1,17 +1,21 @@
 from flask import Flask, request, jsonify
-import keyword_extractor
+#import keyword_extractor
 import audio_finder
 import model
+from flask_cors import CORS,cross_origin
 
 app = Flask(__name__)
-POST_PATH = '/text'
+cors=CORS(app)
+app.config['CORS_HEADERS']='Content-Type'
+#POST_PATH = '/text'
 
-@app.route(POST_PATH, methods=["POST"])
-def api_call():
+@app.route('/',methods=["POST"])
+@cross_origin()
+def home():
     data = request.json
     paragraph = data['text']
     response = dict()
-#    keywords = keyword_extractor.extract_keywords(paragraph)
+#   keywords = keyword_extractor.extract_keywords(paragraph)
     keywords = model.get_keywords(paragraph)
     print(keywords)
 
@@ -20,4 +24,4 @@ def api_call():
     return jsonify(response)
 
 if __name__ == "__main__":
-    app.run(host='localhost', port=3000)
+    app.run(debug=True)

@@ -13,7 +13,8 @@ decorator==4.4.2
 en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0-py3-none-any.whl
 executing==0.6.0
 firebase==3.0.1
-firebase-admin==5.0.0
+firebase_admin
+Flask-Cors==3.0.10
 Flask==1.1.2
 google-api-core==1.26.3
 google-api-python-client==2.3.0

@@ -1,12 +1,27 @@
 import spacy
+import os
 import pytextrank
 import networkx as nx
 import math
 import operator
 import nltk
+root = os.path.dirname(os.path.abspath(__file__))
+download_dir = os.path.join(root, 'my_nltk_dir')
+#os.chdir(download_dir)
+nltk.data.path.append(download_dir)
 from nltk.tokenize import sent_tokenize, word_tokenize
-from nltk.corpus import stopwords
-import install
+#from nltk.corpus import stopwords
+#import install
+
+# import nltk.data
+# root = os.path.dirname(os.path.abspath(__file__))
+# download_dir = os.path.join(root, 'my_nltk_dir')
+# nltk.data.load(
+#     os.path.join(download_dir, 'tokenizers/punkt/english.pickle')
+# )
+
+
+
 
 # nltk.download()
 
@@ -22,6 +37,187 @@ nlp.add_pipe("textrank")
 
 punctuations="?:!.,;"
 
+stop_words=['i',
+ 'me',
+ 'my',
+ 'myself',
+ 'we',
+ 'our',
+ 'ours',
+ 'ourselves',
+ 'you',
+ "you're",
+ "you've",
+ "you'll",
+ "you'd",
+ 'your',
+ 'yours',
+ 'yourself',
+ 'yourselves',
+ 'he',
+ 'him',
+ 'his',
+ 'himself',
+ 'she',
+ "she's",
+ 'her',
+ 'hers',
+ 'herself',
+ 'it',
+ "it's",
+ 'its',
+ 'itself',
+ 'they',
+ 'them',
+ 'their',
+ 'theirs',
+ 'themselves',
+ 'what',
+ 'which',
+ 'who',
+ 'whom',
+ 'this',
+ 'that',
+ "that'll",
+ 'these',
+ 'those',
+ 'am',
+ 'is',
+ 'are',
+ 'was',
+ 'were',
+ 'be',
+ 'been',
+ 'being',
+ 'have',
+ 'has',
+ 'had',
+ 'having',
+ 'do',
+ 'does',
+ 'did',
+ 'doing',
+ 'a',
+ 'an',
+ 'the',
+ 'and',
+ 'but',
+ 'if',
+ 'or',
+ 'because',
+ 'as',
+ 'until',
+ 'while',
+ 'of',
+ 'at',
+ 'by',
+ 'for',
+ 'with',
+ 'about',
+ 'against',
+ 'between',
+ 'into',
+ 'through',
+ 'during',
+ 'before',
+ 'after',
+ 'above',
+ 'below',
+ 'to',
+ 'from',
+ 'up',
+ 'down',
+ 'in',
+ 'out',
+ 'on',
+ 'off',
+ 'over',
+ 'under',
+ 'again',
+ 'further',
+ 'then',
+ 'once',
+ 'here',
+ 'there',
+ 'when',
+ 'where',
+ 'why',
+ 'how',
+ 'all',
+ 'any',
+ 'both',
+ 'each',
+ 'few',
+ 'more',
+ 'most',
+ 'other',
+ 'some',
+ 'such',
+ 'no',
+ 'nor',
+ 'not',
+ 'only',
+ 'own',
+ 'same',
+ 'so',
+ 'than',
+ 'too',
+ 'very',
+ 's',
+ 't',
+ 'can',
+ 'will',
+ 'just',
+ 'don',
+ "don't",
+ 'should',
+ "should've",
+ 'now',
+ 'd',
+ 'll',
+ 'm',
+ 'o',
+ 're',
+ 've',
+ 'y',
+ 'ain',
+ 'aren',
+ "aren't",
+ 'couldn',
+ "couldn't",
+ 'didn',
+ "didn't",
+ 'doesn',
+ "doesn't",
+ 'hadn',
+ "hadn't",
+ 'hasn',
+ "hasn't",
+ 'haven',
+ "haven't",
+ 'isn',
+ "isn't",
+ 'ma',
+ 'mightn',
+ "mightn't",
+ 'mustn',
+ "mustn't",
+ 'needn',
+ "needn't",
+ 'shan',
+ "shan't",
+ 'shouldn',
+ "shouldn't",
+ 'wasn',
+ "wasn't",
+ 'weren',
+ "weren't",
+ 'won',
+ "won't",
+ 'wouldn',
+ "wouldn't"]
+
+
 if __name__ == '__main__':
     text="""Lion and Lioness are roaring and sleeping"""
 
@@ -29,8 +225,9 @@ if __name__ == '__main__':
 
     sentence_words = nltk.word_tokenize(text)
     str2=''
+    
     for word in sentence_words:
-        if word not in punctuations and  word not in stopwords.words('english'):
+        if word not in punctuations and  word not in stop_words:
             str2=str2+' '+word
     text=str2
 
@@ -145,11 +342,14 @@ def collect_phrases (chunk, phrases, counts):
         counts[compound_key] += 1
 
 def get_keywords(text):
+
+
+
     global doc, seen_lemma, ranks
     sentence_words = nltk.word_tokenize(text)
     str2=''
     for word in sentence_words:
-        if word not in punctuations and  word not in stopwords.words('english'):
+        if word not in punctuations and  word not in stop_words:
             str2=str2+' '+word
     text=str2
 
