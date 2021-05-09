@@ -7,33 +7,15 @@ import operator
 import nltk
 root = os.path.dirname(os.path.abspath(__file__))
 download_dir = os.path.join(root, 'my_nltk_dir')
-#os.chdir(download_dir)
 nltk.data.path.append(download_dir)
 from nltk.tokenize import sent_tokenize, word_tokenize
-#from nltk.corpus import stopwords
-#import install
 
-# import nltk.data
-# root = os.path.dirname(os.path.abspath(__file__))
-# download_dir = os.path.join(root, 'my_nltk_dir')
-# nltk.data.load(
-#     os.path.join(download_dir, 'tokenizers/punkt/english.pickle')
-# )
-
-
-
-
-# nltk.download()
-
-
-# !python3 -m spacy download en_core_web_sm
 
 nlp=spacy.load('en_core_web_sm')
 nlp.add_pipe("textrank")
 
 
-"""# Text Rank Algorithm
-"""
+# Text Rank Algorithm
 
 punctuations="?:!.,;"
 
@@ -238,15 +220,6 @@ if __name__ == '__main__':
     #We reinitialise the model everytime
     doc=nlp(text)
 
-#doc._.phrases
-
-# Direct method of solving
-
-# for phrase in doc._.phrases:
-#     print(phrase.text,phrase.rank)
-#     print(phrase.rank, phrase.count)
-#     print(phrase.chunks)
-
 # Alternate way of doing
 
 # Here we will create the graph by making nodes as a tree
@@ -403,14 +376,7 @@ def get_keywords(text):
         list1.append(labels[node_id])
     #    print(labels[node_id], rank)
 
-    """ # Returns the list of the ranked words """
+    # Returns the list of the ranked words
 
     return list1
 
-""" 
-TODO:
-
-1)Get the paragraph from the app.
-2)Return the paragraph to the app
-
-"""
