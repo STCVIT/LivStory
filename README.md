@@ -17,7 +17,6 @@
 
 * The API is stored in the <b>Backend</b> folder
 
-----
 ## Contributors
 * <a href="https://github.com/a-ma-n"> Aman Ali Siddiqui </a>
 * <a href="https://github.com/Arya-Wadhwani07"> Arya Jay Wadhwani  </a>
