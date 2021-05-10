@@ -19,7 +19,7 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 
 <td align="center" width="20%">
 <span><b><center>Python</center></b></span> 
-<img height=60px src="https://cdn.iconscout.com/icon/free/png-256/python-1-226045.png"> 
+<img height=60px src="https://www.python.org/static/community_logos/python-logo.png"> 
 </td>
 
 <td align="center" width="20%">
