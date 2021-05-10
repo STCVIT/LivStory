@@ -18,7 +18,7 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 </td>
 
 <td align="center" width="20%">
-<span><b><center>AzurePython</center></b></span><br><br>
+<span><b><center>Azure</center></b></span><br><br>
 <img height=60px src="https://www.onmsft.com/wp-content/uploads/2021/05/Azure-Icon.png"> 
 </td>
 
