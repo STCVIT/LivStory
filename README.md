@@ -13,7 +13,7 @@
 * Our app automatically plays a sound,dependent on the content when the user stops reading. <br>
 * We have a huge collection of sounds of animals, nature, everyday and even cartoons. <br>
 * For finding the most important word in the text read we usr the Text-Rank Algorithm. <br>
-* Our ML model is hosted on Azure, using a Flask API.
+* Our ML model is hosted on Azure, as a Flask API.
 * Firebase houses our collection of sounds.
 
 ## Getting Started
