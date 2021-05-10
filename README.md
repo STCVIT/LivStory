@@ -3,19 +3,22 @@
 </p>
 <h1> LivStory</h1>
 
-> (Add description)
+> LivStory provides an immersive experience to our readers. Just read your favourite story, and we will enhance your experince by playing real-life sounds based on the content you just read! How do we do that ? It's the magic of Artificial Intellignce. We use the TextRank Algorithm to find out the most important words in your spoken content and then we play a sound accordingly. 
 ---
-[![Download ](https://img.shields.io/badge/-Get%20the%20link%20to%20the%20App-brightgreen)](<add drive link here>)
 
 ## Features
 
-* The root folder contains the app.<br>
-* It will serve as the frontend for the users to interact with <br>
-* And narrate stories.
+* Our app automatically plays a sound when the user stops reading. <br>
+* Sound played will be completely dependent on the content read by the user. <br>
+* Our app contains  sounds of different categories like sounds of animals, nature, everyday sounds and even cartoons.
 
 ## Getting Started
 
-* The API is stored in the <b>Backend</b> folder
+* Download the app from the apk file from here: <br>
+
+[![Download ](https://img.shields.io/badge/-Get%20the%20link%20to%20the%20App-brightgreen)](<add drive link here>)
+
+* Start reading your favourite story, and something real good happens as soon as you stop! <br>
 
 ## Contributors
 * <a href="https://github.com/a-ma-n"> Aman Ali Siddiqui </a>
