@@ -13,17 +13,17 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 <tbody>
  <tr>
 <td align="center" width="20%">
-<span><b><center>Android</center></b></span> 
+<span><b><center>Android</center></b></span><br>
 <img height=60px src="https://cdn4.iconfinder.com/data/icons/logos-3/228/android-512.png"> 
 </td>
 
 <td align="center" width="20%">
-<span><b><center>Python</center></b></span> 
+<span><b><center>Python</center></b></span><br>
 <img height=60px src="https://www.python.org/static/community_logos/python-logo.png"> 
 </td>
 
 <td align="center" width="20%">
-<span><b><center>Azure</center></b></span> 
+<span><b><center>Azure</center></b></span><br>
 <img height=60px src="https://www.onmsft.com/wp-content/uploads/2021/05/Azure-Icon.png"> 
 </td>
 </tr>
