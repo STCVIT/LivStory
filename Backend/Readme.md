@@ -61,6 +61,9 @@
 ## App
 
 ---
+## UI/UX
+
+---
 ## Text Rank model 
 
 
@@ -75,3 +78,4 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 ## Deployment
 
 ---
+
