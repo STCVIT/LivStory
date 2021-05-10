@@ -1,6 +1,6 @@
 # Here is the Text Rank Raw code used for keyword extraction
 
-<a href=""><img src="https://unsplash.com/photos/askpr0s66Rg" alt="drawing" width="1000"></a>
+<a href=""><img src="https://images.unsplash.com/photo-1528459199957-0ff28496a7f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80" alt="drawing" width="500"></a>
 
 * Here is the link for the google colab notebook
 
