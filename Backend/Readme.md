@@ -17,10 +17,7 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 <img height=60px src="https://cdn-images-1.medium.com/max/1200/1*iDQvKoz7gGHc6YXqvqWWZQ.png"> 
 </td>
 
-<td align="center" width="20%">
-<span><b><center>Python</center></b></span> 
-<img height=60px src="https://cdn.iconscout.com/icon/free/png-256/python-1-226045.png"> 
-</td>
+
 
 <td align="center" width="20%">
 <span><b><center>Azure</center></b></span> 
@@ -70,15 +67,9 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 <img height=65px src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/SpaCy_logo.svg/1200px-SpaCy_logo.svg.png"> 
 </td>
 
-<td align="center" width="20%">
-<span><b><center>Nginx</center></b></span> 
-<img height=65px src="http://www.myiconfinder.com/uploads/iconsets/256-256-cf2ed3956a3a1484f83ed20d7e987f21.png"> 
-</td>
 
-<td align="center" width="20%">
-<span><b><center>SQL</center></b></span> 
-<img height=65px src="https://i0.wp.com/www.complexsql.com/wp-content/uploads/2017/01/sql-logo.jpg?ssl=1"> 
-</td>
+
+
 </tr>
 
 </tbody>
