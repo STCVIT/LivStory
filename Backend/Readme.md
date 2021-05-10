@@ -57,8 +57,8 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 </td>
 
 <td align="center" width="20%">
-<span><b><center>Python</center></b></span> 
-<img height=65px src="https://www.python.org/static/community_logos/python-logo.png"> 
+<span><b><center>Java</center></b></span> 
+<img height=65px src="https://cdn.iconscout.com/icon/free/png-256/java-60-1174953.png"> 
 </td>
 </tr>
 
