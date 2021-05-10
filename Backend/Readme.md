@@ -52,8 +52,8 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 </td>
 
 <td align="center" width="20%">
-<span><b><center>Linux System Administration</center></b></span> 
-<img height=65px src="https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png"> 
+<span><b><center>Retrofit</center></b></span> 
+<img height=65px src="https://miro.medium.com/max/2048/1*WMf1XcyKU98dOMlNnn-Agg.png"> 
 </td>
 
 
@@ -63,9 +63,6 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 <img height=65px src="https://www.python.org/static/community_logos/python-logo.png"> 
 </td>
 </tr>
-
-
-
 
 
 
