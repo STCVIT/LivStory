@@ -15,8 +15,7 @@
 * For finding the most important word in the text read we usr the Text-Rank Algorithm. <br>
 * Our ML model is hosted on Azure, as a Flask API.
 * Firebase houses our collection of sounds.
-
-(https://img.shields.io/badge/-Want%20to%20know%20to%20more%20?%20App-brightgreen)](<add drive link here>)
+(https://img.shields.io/badge/-Want%20to%20know%20more%3F-orange)](<add drive link here>)
 
 ## Getting Started
 
