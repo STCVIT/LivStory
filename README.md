@@ -3,7 +3,7 @@
 </p>
 <h1> LivStory</h1>
 
-> LivStory provides an immersive experience to our readers.Read your favourite story, and we will enhance your experince by playing real-life sounds based on the content you just read! How do we do that ? It's the magic of Artificial Intelligence. We use the Text-Rank Algorithm to find out the most important words when you speak and play a sound accordingly. 
+> LivStory provides an immersive experience to our readers.Read out your favourite story, and we will enhance your experince by playing real-life sounds based on the content you just read! How do we do that ? It's the magic of Artificial Intelligence. We use the Text-Rank Algorithm to find out the most important words when you speak and play a sound accordingly. 
 ---
 
 [![Download ](https://img.shields.io/badge/-Get%20the%20link%20to%20the%20App-brightgreen)](<add drive link here>)
