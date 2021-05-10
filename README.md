@@ -6,6 +6,8 @@
 > LivStory provides an immersive experience to our readers. Just read your favourite story, and we will enhance your experince by playing real-life sounds based on the content you just read! How do we do that ? It's the magic of Artificial Intellignce. We use the TextRank Algorithm to find out the most important words in your spoken content and then we play a sound accordingly. 
 ---
 
+[![Download ](https://img.shields.io/badge/-Get%20the%20link%20to%20the%20App-brightgreen)](<add drive link here>)
+
 ## Features
 
 * Our app automatically plays a sound when the user stops reading. <br>
@@ -14,10 +16,7 @@
 
 ## Getting Started
 
-* Download the app from the apk file from here: <br>
-
-[![Download ](https://img.shields.io/badge/-Get%20the%20link%20to%20the%20App-brightgreen)](<add drive link here>)
-
+* Download the app from the apk file from above <br>
 * Start reading your favourite story, and something real good happens as soon as you stop! <br>
 
 ## Contributors
