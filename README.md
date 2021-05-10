@@ -16,7 +16,7 @@
 
 ## Getting Started
 
-* Download the app from the apk file from above <br>
+* Download the app from the apk file above <br>
 * Start reading your favourite story, and something real good happens as soon as you stop! <br>
 
 ## Contributors
