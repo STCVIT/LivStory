@@ -1,4 +1,4 @@
-#  Text Rank model 
+
 
 
 * Colab Notebook
@@ -6,7 +6,7 @@
 https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authuser=1#scrollTo=UQWnw8HmT5hA
 
 
-# Tech Stack :computer:
+# Tech Stack Used :computer:
 
 <br>
 <table>
@@ -64,3 +64,9 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 
 </tbody>
 </table>
+
+## App
+## Text Rank model 
+## Flask API
+## Deployment
+
