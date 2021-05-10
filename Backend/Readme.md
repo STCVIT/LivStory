@@ -56,15 +56,11 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 <img height=65px src="https://miro.medium.com/max/2048/1*WMf1XcyKU98dOMlNnn-Agg.png"> 
 </td>
 
-
-
 <td align="center" width="20%">
 <span><b><center>Python</center></b></span> 
 <img height=65px src="https://www.python.org/static/community_logos/python-logo.png"> 
 </td>
 </tr>
-
-
 
 </tbody>
 </table>
