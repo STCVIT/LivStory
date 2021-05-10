@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LivStory</string>
+
+    <string name="play">Play</string>
+    <string name="beginning_text">Press the mic button to start...</string>
+
+</resources>
