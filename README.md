@@ -3,7 +3,7 @@
 </p>
 <h1> LivStory</h1>
 
-> LivStory provides an immersive experience to our readers.Read out your favourite story, and we will enhance your experince by playing real-life sounds based on the content you just read! How do we do that ? It's the magic of Artificial Intelligence. We use the Text-Rank Algorithm to find out the most important words when you speak and play a sound accordingly. So go on, Get Reading! 
+> LivStory provides an immersive experience to our readers.Read out your favourite story, and we will enhance your experince by playing real-life sounds based on the content you just read! How do we do that ? It's the magic of Artificial Intelligence to find out the most important words when you speak and play a sound accordingly. So go on, Get Reading! 
 ---
 
 [![Download ](https://img.shields.io/badge/-Get%20the%20link%20to%20the%20App-brightgreen)](<add drive link here>)
@@ -20,6 +20,7 @@
 * Start reading your favourite story, and something real good happens as soon as you stop! <br>
 
 ## Contributors
+
 * <a href="https://github.com/a-ma-n"> Aman Ali Siddiqui </a>
 * <a href="https://github.com/Arya-Wadhwani07"> Arya Jay Wadhwani  </a>
 * <a href="https://github.com/DeepBlueS3a"> Deepesh Padala </a>
@@ -27,6 +28,7 @@
 
 
 ## Connect with Us
+
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/mstcvit/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/micvitvellore/mycompany/)
 
