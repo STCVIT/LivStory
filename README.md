@@ -23,6 +23,10 @@
 * Download the app from the apk file above. <br>
 * Start reading your favourite story, and something real good happens as soon as you stop! <br>
 
+## License
+
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
 ## Contributors
 
 * <a href="https://github.com/a-ma-n"> Aman Ali Siddiqui </a>
