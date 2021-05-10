@@ -26,7 +26,6 @@
 * <a href="https://github.com/DeepBlueS3a"> Deepesh Padala </a>
 * <a href="https://github.com/yashkasera">  Yash Kasera </a>
 
-
 ## Connect with Us
 
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/mstcvit/)
