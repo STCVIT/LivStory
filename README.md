@@ -16,6 +16,8 @@
 * Our ML model is hosted on Azure, as a Flask API.
 * Firebase houses our collection of sounds.
 
+(https://img.shields.io/badge/-Want%20to%20know%20to%20more%20?%20App-brightblue)](<add drive link here>)
+
 ## Getting Started
 
 * Download the app from the apk file above. <br>
