@@ -3,16 +3,18 @@
 </p>
 <h1> LivStory</h1>
 
-> LivStory provides an immersive experience to our readers.Read out your favourite story, and we will enhance your experince by playing real-life sounds based on the content you just read! How do we do that ? It's the magic of Artificial Intelligence to find out the most important words when you speak and play a sound accordingly. So go on, Get Reading! 
+> LivStory provides an immersive experience to our readers.Read out your favourite story, and we will enhance your experince by playing real-life sounds based on the content you just read!  How do we do that ? We use the magic of Artificial Intelligence to find out the most important words when you speak and play sounds accordingly. So go on, Get Reading! 
 ---
 
 [![Download ](https://img.shields.io/badge/-Get%20the%20link%20to%20the%20App-brightgreen)](<add drive link here>)
 
 ## Features
 
-* Our app automatically plays a sound when the user stops reading. <br>
-* Sound played will be completely dependent on the content read by the user. <br>
-* Our app contains  sounds of different categories like sounds of animals, nature, everyday sounds and even cartoons.
+* Our app automatically plays a sound,dependent on the content when the user stops reading. <br>
+* We have a huge collection of sounds of animals, nature, everyday and even cartoons. <br>
+* For finding the most important word in the text read we usr the Text-Rank Algorithm. <br>
+* Our ML model is hosted on Azure, using a Flask API.
+* Firebase houses our collection of sounds.
 
 ## Getting Started
 
