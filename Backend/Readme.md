@@ -18,13 +18,13 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 </td>
 
 <td align="center" width="20%">
-<span><b><center>Python</center></b></span><br><br>
-<img height=60px src="https://www.python.org/static/community_logos/python-logo.png"> 
+<span><b><center>AzurePython</center></b></span><br><br>
+<img height=60px src="https://www.onmsft.com/wp-content/uploads/2021/05/Azure-Icon.png"> 
 </td>
 
 <td align="center" width="20%">
-<span><b><center>Azure</center></b></span><br><br>
-<img height=60px src="https://www.onmsft.com/wp-content/uploads/2021/05/Azure-Icon.png"> 
+<span><b><center>Firebase</center></b></span><br><br>
+<img height=60px src="https://cdn4.iconfinder.com/data/icons/google-i-o-2016/512/google_firebase-2-512.png"> 
 </td>
 </tr>
 
@@ -35,8 +35,8 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 </td>
 
 <td align="center" width="20%">
-<span><b><center>Firebase</center></b></span><br><br>
-<img height=65px src="https://cdn4.iconfinder.com/data/icons/google-i-o-2016/512/google_firebase-2-512.png"> 
+<span><b><center>Colab</center></b></span><br><br>
+<img height=65px src="https://colab.research.google.com/img/colab_favicon_256px.png"> 
 </td>
 
 <td align="center" width="20%">
@@ -47,8 +47,8 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 
 <tr>
 <td align="center" width="20%">
-<span><b><center>Colab</center></b></span><br><br>
-<img height=65px src="https://colab.research.google.com/img/colab_favicon_256px.png"> 
+<span><b><center>Python</center></b></span><br><br>
+<img height=65px src="https://www.python.org/static/community_logos/python-logo.png"> 
 </td>
 
 <td align="center" width="20%">
