@@ -13,8 +13,8 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 <tbody>
  <tr>
 <td align="center" width="20%">
-<span><b><center>TensorFlow</center></b></span> 
-<img height=60px src="https://cdn-images-1.medium.com/max/1200/1*iDQvKoz7gGHc6YXqvqWWZQ.png"> 
+<span><b><center>Android</center></b></span> 
+<img height=60px src="https://cdn4.iconfinder.com/data/icons/logos-3/228/android-512.png"> 
 </td>
 
 <td align="center" width="20%">
@@ -47,8 +47,8 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 
 <tr>
 <td align="center" width="20%">
-<span><b><center>Android</center></b></span> 
-<img height=65px src="https://cdn4.iconfinder.com/data/icons/logos-3/228/android-512.png"> 
+<span><b><center>Colab</center></b></span> 
+<img height=65px src="https://colab.research.google.com/img/colab_favicon_256px.png"> 
 </td>
 
 <td align="center" width="20%">
