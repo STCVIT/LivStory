@@ -74,6 +74,12 @@
 
 https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authuser=1#scrollTo=UQWnw8HmT5hA
 
+* Based on the famous Google Page Rank Algorithm
+* It finds the rank of keywords using a node based lemma graph
+* Once found, sorts them and sends the words defining the paragraph in the best possible way
+* It is an unsupervised model that works on a faster response time
+* Data Preprocessing involves removak of stop words and Lemmetization techniques
+
 ---
 
 ## Deployment
