@@ -1,5 +1,5 @@
 
-#### <Logo gif>
+### <Logo gif>
  
 # Tech Stack Used :computer:
 
