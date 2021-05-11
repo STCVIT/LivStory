@@ -72,10 +72,13 @@
 https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authuser=1#scrollTo=UQWnw8HmT5hA
 
 ---
-## Flask API
 
----
 ## Deployment
 
 ---
 
+* The model was set up as a *Flask* API.
+* API was deployed on *Microsoft Azure*. on B1 Tier
+* We used *Postman* for testing the API calls.
+* The API runs the Text-Rank ML Model and then sends a query in Firebase(Free Tier).
+* Accordng to the query, sounds are fetched from *Firebase* and returned back to our app as a result of the API.
