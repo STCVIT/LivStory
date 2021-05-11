@@ -68,7 +68,7 @@
 
 ---
 ## Text Rank model 
-
+---
 
 * Colab Notebook
 
@@ -80,7 +80,7 @@ https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authus
 * It is an unsupervised model that works on a faster response time
 * Data Preprocessing involves removal of stop words and Lemmetization techniques
 
----
+
 
 ## Deployment
 
