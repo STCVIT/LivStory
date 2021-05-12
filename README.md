@@ -20,6 +20,11 @@
 
 [![](https://img.shields.io/badge/-Want%20to%20know%20more%3F-orange)](https://github.com/STCVIT/LivStory/tree/main/Backend)
 
+## Dependencies
+-
+-
+-
+
 ## Getting Started
 
 * Download the app from the apk file above. <br>
