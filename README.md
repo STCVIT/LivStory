@@ -5,8 +5,11 @@
 
 > LivStory provides an immersive experience to our readers.Read your favourite story, we will enhance your experince by playing real-life sounds based on the content you just read!  How do we do that ? We use the magic of Artificial Intelligence to find out the most important words when you speak and play sounds accordingly. So go on, Get Reading! 
 ---
+[![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=appveyor)](https://documenter.getpostman.com/docLink) 
+[![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](https://hostedLink)
 
-[![Download ](https://img.shields.io/badge/-Get%20the%20link%20to%20the%20App-brightgreen)](https://github.com/STCVIT/LivStory/raw/75369c71e967ecc84d9dce80a4dbc86bee1b2d22/App/app/release/app-release.apk)
+[![Download ](https://img.shields.io/badge/-Get%20the%20link%20to%20the%20App-brightgreen)]
+(https://github.com/STCVIT/LivStory/raw/75369c71e967ecc84d9dce80a4dbc86bee1b2d22/App/app/release/app-release.apk)
 
 ## Features
 
