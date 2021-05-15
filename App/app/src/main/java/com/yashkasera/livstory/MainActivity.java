@@ -155,7 +155,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
     @Override
     public void onRmsChanged(float rmsdB) {
-//        progressBar.setProgress((int) rmsdB);
         progressView.onRmsChanged(rmsdB);
     }
 
