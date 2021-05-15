@@ -169,12 +169,14 @@
   <com.google.ar/>
   <com.google.ar.sceneform/>
   <com.google.ar.sceneform.ux/>
+  <com.google.assistant.appactions/>
   <com.google.assistant.suggestion/>
   <com.google.chromeos/>
   <com.google.devtools.ksp/>
   <com.google.fhir/>
   <com.google.firebase/>
   <com.google.gms/>
+  <com.google.jacquard/>
   <com.google.mlkit/>
   <com.google.oboe/>
   <com.google.prefab/>
