@@ -1,6 +1,6 @@
 Backend/flask_api/creds/google-services.json
 Backend/flask_api/lstory/lib
-
+/Backend/flask_api/creds
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
