@@ -39,8 +39,10 @@ def text():
     audio_strings = audio_finder.get_audio(keywords)
     response["sounds"] = dict() # audio_strings
     for i in range(len(keywords)):
-        response["sounds"][keywords[i]] = audio_strings[i]
+        if audio_strings[i]!='':
+            response["sounds"][keywords[i]] = audio_strings[i]
     return jsonify(response)
+
 
 @app.route('/texts',methods=["POST"])
 @cross_origin()

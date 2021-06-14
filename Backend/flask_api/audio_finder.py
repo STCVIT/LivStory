@@ -11,6 +11,7 @@ db = firestore.client()
 def get_audio(keywords: list):
     sounds = []    
     for word in keywords:
+        flag=0
         print(f"searching for sounds related to {word}")
         audio_ref = db.collection(u'sounds')
         audio_docs = audio_ref.stream()
@@ -19,6 +20,9 @@ def get_audio(keywords: list):
             for reference_word in audio_doc['keywords']:
                 if word == reference_word:
                     sounds.append(audio_doc['media'])
+                    flag=1
+        if flag==0:
+            sounds.append('')
     
     return sounds
 
