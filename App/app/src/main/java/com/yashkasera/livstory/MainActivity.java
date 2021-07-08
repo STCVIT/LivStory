@@ -1,28 +1,43 @@
 package com.yashkasera.livstory;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
-import com.yashkasera.livstory.model.RequestModel;
-import com.yashkasera.livstory.model.ResponseModel;
+import com.yashkasera.livstory.modal.ListResponseModel;
+import com.yashkasera.livstory.modal.RequestModel;
+import com.yashkasera.livstory.modal.SoundResponseModel;
 import com.yashkasera.livstory.retrofit.RetrofitInstance;
 import com.yashkasera.livstory.retrofit.RetrofitInterface;
 
@@ -32,112 +47,208 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.internal.EverythingIsNonNull;
 
+import static com.yashkasera.livstory.Functions.hexStringToByteArray;
 
 public class MainActivity extends AppCompatActivity implements RecognitionListener {
     private static final String TAG = "MainActivity";
-    private final MediaPlayer mediaPlayer = new MediaPlayer();
-    Context context = this;
-    Button play;
+    private final Context context = this;
+    private MediaPlayer mediaPlayer = new MediaPlayer();
+    private ObjectAnimator animator1, animator2;
+    private TextView textView;
     private SwitchCompat playAutomatically;
     private ImageButton record;
-    private TextView text;
     private boolean isListening = false;
     private SpeechRecognizer speechRecognizer;
-    private SpeechProgressView progressView;
     private Intent speechRecognizerIntent;
-
-    public static byte[] hexStringToByteArray(String s) {
-        int len = s.length();
-        byte[] data = new byte[len / 2];
-        for (int i = 0; i < len; i += 2) {
-            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
-                    + Character.digit(s.charAt(i + 1), 16));
-        }
-        return data;
-    }
+    private ChipGroup chipGroup;
+    private ProgressBar progressBar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewByIds();
-        playAutomatically.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                findViewById(R.id.relativeLayout).setVisibility(View.GONE);
+        init();
+        record.setOnClickListener(v -> {
+            if (isListening) {
+                isListening = false;
+                speechRecognizer.stopListening();
+                textView.setHint("Press mic button to start speaking...");
             } else {
-                findViewById(R.id.relativeLayout).setVisibility(View.VISIBLE);
+                isListening = true;
+                speechRecognizer.startListening(speechRecognizerIntent);
+                textView.setText("");
+                textView.setHint("Listening...");
             }
         });
+        findViewById(R.id.cardView).setOnClickListener(v -> openDialog());
+        findViewById(R.id.text).setOnClickListener(v -> openDialog());
+    }
+
+    private void openDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        CardViewFragment cardViewFragment = CardViewFragment.newInstance();
+        Bundle bundle = new Bundle();
+        bundle.putString("text", textView.getText().toString());
+        cardViewFragment.setArguments(bundle);
+        cardViewFragment.show(fm, "fullscreen");
+    }
+
+    public void getSound(String text) {
+        RetrofitInterface retrofitInterface = RetrofitInstance.getRetrofitInstance().create(RetrofitInterface.class);
+        Call<SoundResponseModel> call = retrofitInterface.getSound(new RequestModel(text));
+        call.enqueue(new Callback<SoundResponseModel>() {
+            @Override
+            @EverythingIsNonNull
+            public void onResponse(Call<SoundResponseModel> call, retrofit2.Response<SoundResponseModel> response) {
+                SoundResponseModel soundResponseModel = response.body();
+                if (soundResponseModel != null) {
+                    Map.Entry<String, String> entry = soundResponseModel
+                            .getSound()
+                            .entrySet()
+                            .iterator()
+                            .next();
+                    String mp3_64 = entry.getValue();
+                    if (Objects.requireNonNull(mp3_64).length() > 0) {
+                        textView.setText(getSpannableString(context, text, soundResponseModel.getSound()));
+                        playMp3(mp3_64);
+                    } else {
+                        Snackbar.make(textView, "Couldn't find any sounds! Please try again",
+                                BaseTransientBottomBar.LENGTH_SHORT)
+                                .show();
+                    }
+                }
+            }
+
+            @Override
+            @EverythingIsNonNull
+            public void onFailure(Call<SoundResponseModel> call, Throwable t) {
+                Log.e(TAG, "onFailure: ", t);
+                startListening();
+            }
+        });
+    }
+
+    public void getList(String text) {
+        RetrofitInterface retrofitInterface = RetrofitInstance.getRetrofitInstance().create(RetrofitInterface.class);
+        Call<ListResponseModel> call = retrofitInterface.getList(new RequestModel(text));
+        call.enqueue(new Callback<ListResponseModel>() {
+            @Override
+            @EverythingIsNonNull
+            public void onResponse(Call<ListResponseModel> call, retrofit2.Response<ListResponseModel> response) {
+                Log.d(TAG, "onResponse() returned: " + response.body());
+                ListResponseModel listResponseModel = response.body();
+                if (listResponseModel != null) {
+                    progressBar.setVisibility(View.GONE);
+                    if (listResponseModel.getSounds().keySet().size() == 0) {
+                        Snackbar.make(textView, "Couldn't find any sounds! Please try again",
+                                BaseTransientBottomBar.LENGTH_SHORT)
+                                .show();
+                    }
+                    Log.d(TAG, "onResponse() returned: " + listResponseModel.getSounds().keySet());
+                    addSoundChips(listResponseModel.getSounds());
+                    textView.setText(getSpannableString(context, text, listResponseModel.getSounds()));
+                }
+            }
+
+            @Override
+            @EverythingIsNonNull
+            public void onFailure(Call<ListResponseModel> call, Throwable t) {
+                Log.e(TAG, "onFailure: ", t);
+                Snackbar.make(textView, "Couldn't find any sounds! Please try again",
+                        BaseTransientBottomBar.LENGTH_SHORT)
+                        .show();
+            }
+        });
+    }
+
+    private SpannableString getSpannableString(Context context, String text, Map<String, String> sounds) {
+        text += " ";
+        SpannableString spannableString = new SpannableString(text);
+        for (String str : sounds.keySet()) {
+            ClickableSpan clickableSpan = new ClickableSpan() {
+                @Override
+                public void onClick(@NonNull View view) {
+
+                }
+
+                @Override
+                public void updateDrawState(@NonNull TextPaint ds) {
+                    super.updateDrawState(ds);
+                    ds.setColor(ContextCompat.getColor(context, R.color.colorAccent));
+                    ds.setUnderlineText(true);
+                }
+            };
+            try {
+                int o = text.toLowerCase().indexOf(str.toLowerCase());
+                spannableString.setSpan(clickableSpan,
+                        o,
+                        text.indexOf(' ', o),
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            } catch (IndexOutOfBoundsException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return spannableString;
+    }
+
+    private void addSoundChips(Map<String, String> sounds) {
+        for (String key : sounds.keySet()) {
+            Chip chip = new Chip(context);
+            chip.setText(key);
+            chip.setTextColor(ColorStateList.valueOf(ContextCompat.getColor(context,
+                    R.color.colorAccent)));
+            chip.setChipBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context,
+                    R.color.chipBackgroundColor)));
+            chip.setChipStrokeColor(ColorStateList.valueOf(ContextCompat.getColor(context,
+                    R.color.colorAccent)));
+            chip.setTextStartPaddingResource(R.dimen.margin_medium);
+            chip.setTextEndPaddingResource(R.dimen.margin_medium);
+            chip.setChipStrokeWidthResource(R.dimen.strokeWidth);
+            chip.setOnClickListener(v -> playMp3(sounds.get(key)));
+            chipGroup.addView(chip);
+        }
+    }
+
+    private void init() {
+        playAutomatically = findViewById(R.id.playAutomatically);
+        record = findViewById(R.id.record);
+        textView = findViewById(R.id.text);
+//        textView.setMovementMethod(new LinkMovementMethod());
+        chipGroup = findViewById(R.id.chipGroup);
+        progressBar = findViewById(R.id.progressBar);
+        playAutomatically.setOnCheckedChangeListener((v, isChecked) -> {
+            if (isChecked)
+                chipGroup.setVisibility(View.GONE);
+            else
+                chipGroup.setVisibility(View.VISIBLE);
+        });
+
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         speechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
         speechRecognizer.setRecognitionListener(this);
+        ImageView pulse1 = findViewById(R.id.pulse1);
+        ImageView pulse2 = findViewById(R.id.pulse2);
 
-        record.setOnClickListener(v -> {
-            if (isListening) {
-                record.setImageDrawable(context.getDrawable(R.drawable.ic_baseline_mic_off_24));
-                isListening = false;
-                progressView.setVisibility(View.GONE);
-                speechRecognizer.stopListening();
-
-            } else {
-                record.setImageDrawable(context.getDrawable(R.drawable.ic_baseline_mic_24));
-                speechRecognizer.startListening(speechRecognizerIntent);
-                isListening = true;
-            }
-        });
+        animator1 = ObjectAnimator.ofPropertyValuesHolder(
+                pulse1,
+                PropertyValuesHolder.ofFloat("scaleX", 1f),
+                PropertyValuesHolder.ofFloat("scaleY", 1f));
+        animator2 = ObjectAnimator.ofPropertyValuesHolder(
+                pulse2,
+                PropertyValuesHolder.ofFloat("scaleX", 1f),
+                PropertyValuesHolder.ofFloat("scaleY", 1f));
     }
 
-    private void findViewByIds() {
-        playAutomatically = findViewById(R.id.playAutomatically);
-        record = findViewById(R.id.record);
-        text = findViewById(R.id.text);
-        progressView = findViewById(R.id.progress);
-        play = findViewById(R.id.play);
-    }
-
-    public String getErrorText(int errorCode) {
-        String message;
-        switch (errorCode) {
-            case SpeechRecognizer.ERROR_AUDIO:
-                message = "Audio recording error";
-                break;
-            case SpeechRecognizer.ERROR_CLIENT:
-                message = "Client side error";
-                break;
-            case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
-                message = "Insufficient permissions";
-                break;
-            case SpeechRecognizer.ERROR_NETWORK:
-                message = "Network error";
-                break;
-            case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
-                message = "Network timeout";
-                break;
-            case SpeechRecognizer.ERROR_NO_MATCH:
-                message = "No match";
-                break;
-            case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
-                message = "RecognitionService busy";
-                break;
-            case SpeechRecognizer.ERROR_SERVER:
-                message = "error from server";
-                break;
-            case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
-                message = "No speech input";
-                break;
-            default:
-                message = "Didn't understand, please try again.";
-                break;
-        }
-        return message;
-    }
 
     @Override
     public void onReadyForSpeech(Bundle params) {
@@ -146,16 +257,26 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
     @Override
     public void onBeginningOfSpeech() {
-        Log.i(TAG, "onBeginningOfSpeech ");
-        play.setEnabled(false);
-        progressView.onBeginningOfSpeech();
-        text.setText("");
-        text.setHint("Listening...");
+        isListening = true;
+        Log.i(TAG, "onBeginningOfSpeech: ");
+        textView.setText("");
+        textView.setHint("Listening...");
+        chipGroup.removeAllViews();
     }
 
     @Override
     public void onRmsChanged(float rmsdB) {
-        progressView.onRmsChanged(rmsdB);
+        float scale = (Math.abs(rmsdB) / 5);
+        animator1.setValues(
+                PropertyValuesHolder.ofFloat("scaleX", scale),
+                PropertyValuesHolder.ofFloat("scaleY", scale));
+        animator1.setInterpolator(new FastOutSlowInInterpolator());
+        animator1.start();
+        animator2.setValues(
+                PropertyValuesHolder.ofFloat("scaleX", scale * 1.4f),
+                PropertyValuesHolder.ofFloat("scaleY", scale * 1.4f));
+        animator2.setInterpolator(new FastOutSlowInInterpolator());
+        animator2.start();
     }
 
     @Override
@@ -165,56 +286,15 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
     @Override
     public void onEndOfSpeech() {
-        Log.d(TAG, "onEndOfSpeech()");
-        isListening = false;
-        progressView.onEndOfSpeech();
-        record.setImageDrawable(context.getDrawable(R.drawable.ic_baseline_mic_off_24));
-    }
-
-    private void callAPI(String text) {
-        View view = findViewById(android.R.id.content);
-        RetrofitInterface retrofitInterface = RetrofitInstance.getRetrofitInstance().create(RetrofitInterface.class);
-        Call<ResponseModel> call = retrofitInterface.getSound(new RequestModel(text));
-        call.enqueue(new Callback<ResponseModel>() {
-            @Override
-            public void onResponse(Call<ResponseModel> call, retrofit2.Response<ResponseModel> response) {
-                if (response == null) return;
-                ResponseModel responseModel = response.body();
-                if (responseModel != null) {
-                    if (responseModel.getSounds() == null || responseModel.getSounds().size() == 0) {
-                        Snackbar.make(view, "Could not find any suitable audio! Please try a longer paragraph",
-                                BaseTransientBottomBar.LENGTH_SHORT)
-                                .show();
-                        return;
-                    }
-                    play.setEnabled(true);
-                    if (playAutomatically.isChecked())
-                        playMp3(responseModel.getSounds().get(0));
-                    else {
-                        play.setOnClickListener(v -> {
-                            playMp3(responseModel.getSounds().get(0));
-                        });
-                    }
-                } else {
-                    Snackbar.make(view, "Could not fetch data from our server",
-                            BaseTransientBottomBar.LENGTH_SHORT)
-                            .show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseModel> call, Throwable t) {
-                Log.e(TAG, "onFailure: ", t);
-                Toast.makeText(MainActivity.this, "Could not fetch data from our server", Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 
     @Override
     public void onError(int error) {
-        Log.e(TAG, "onError: " + getErrorText(error));
+        isListening = false;
+        Log.e(TAG, "onError: " + Functions.getErrorText(error));
         View view = findViewById(android.R.id.content);
+        textView.setHint("Press mic button to start speaking...");
         if (error == SpeechRecognizer.ERROR_NO_MATCH) {
             Snackbar.make(view, "Unable to understand. Please try again",
                     BaseTransientBottomBar.LENGTH_SHORT)
@@ -222,13 +302,54 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         } else if (error == SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS) {
             Snackbar.make(view, "Please allow microphone access in to use this app",
                     BaseTransientBottomBar.LENGTH_SHORT)
-                    .setAction("ALLOW", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.RECORD_AUDIO}, 1001);
-                        }
-                    })
+                    .setAction("ALLOW", v ->
+                            ActivityCompat.requestPermissions(MainActivity.this,
+                                    new String[]{Manifest.permission.RECORD_AUDIO}, 1001))
                     .show();
+        }
+    }
+
+    @Override
+    public void onResults(Bundle results) {
+        isListening = false;
+        ArrayList<String> data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+        textView.setText(data.get(0));
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setIndeterminate(true);
+        if (playAutomatically.isChecked())
+            getSound(data.get(0));
+        else
+            getList(data.get(0));
+    }
+
+    private void startListening() {
+        if (playAutomatically.isChecked()) {
+            speechRecognizer.startListening(speechRecognizerIntent);
+            textView.setText("");
+            textView.setHint("Listening...");
+            isListening = true;
+        }
+    }
+
+    @Override
+    public void onPartialResults(Bundle partialResults) {
+        ArrayList<String> data = partialResults.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+        textView.setText(data.get(0));
+    }
+
+    @Override
+    public void onEvent(int eventType, Bundle params) {
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        speechRecognizer.stopListening();
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.reset();
+            mediaPlayer.release();
         }
     }
 
@@ -240,43 +361,23 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             FileOutputStream fos = new FileOutputStream(tempMp3);
             fos.write(mp3SoundByteArray);
             fos.close();
-
-            mediaPlayer.reset();
             FileInputStream fis = new FileInputStream(tempMp3);
+            if (mediaPlayer == null)
+                mediaPlayer = new MediaPlayer();
             mediaPlayer.setDataSource(fis.getFD());
-
             mediaPlayer.prepare();
-            mediaPlayer.start();
-        } catch (IOException ex) {
+            mediaPlayer.setOnPreparedListener(MediaPlayer::start);
+            progressBar.setVisibility(View.VISIBLE);
+            progressBar.setIndeterminate(false);
+            progressBar.setProgress(100);
+            mediaPlayer.setOnCompletionListener(mp -> {
+                mp.reset();
+                progressBar.setVisibility(View.GONE);
+                startListening();
+            });
+        } catch (IOException | IllegalStateException ex) {
             ex.printStackTrace();
         }
-    }
-
-    @Override
-    public void onResults(Bundle bundle) {
-        ArrayList<String> data = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-        text.setText(data.get(0));
-        progressView.onResultOrOnError();
-        callAPI(data.get(0));
-
-    }
-
-    @Override
-    public void onPartialResults(Bundle bundle) {
-        ArrayList<String> data = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-        text.setText(data.get(0));
-    }
-
-    @Override
-    public void onEvent(int eventType, Bundle params) {
-
-    }
-
-    @Override
-    public void onPause() {
-        Log.i(TAG, "pause");
-        super.onPause();
-        speechRecognizer.stopListening();
     }
 
 }

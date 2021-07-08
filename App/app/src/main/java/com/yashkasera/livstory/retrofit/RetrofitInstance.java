@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInstance {
 
-    private static final String BASE_URL = "https://livstory4.azurewebsites.net";
+    private static final String BASE_URL = "https://livstory.azurewebsites.net/";
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofitInstance() {

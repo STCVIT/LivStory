@@ -1,126 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
-    tools:context=".MainActivity"
-    android:animateLayoutChanges="true">
+    android:background="@color/backgroundColor">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_text_logo" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="@color/cardBackgroundColor"
+        app:cardCornerRadius="6dp"
+        app:contentPadding="16dp"
+        app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/logo">
 
-        <TextView
-            android:id="@+id/text"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_margin="40dp"
-            android:background="@drawable/bg_textview"
-            android:gravity="center"
-            android:padding="@dimen/margin_medium"
-            android:text="@string/beginning_text"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="76dp"
-            android:layout_height="76dp"
-            android:layout_alignTop="@id/text"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="-20dp"
-            android:layout_marginEnd="20dp"
-            android:contentDescription="Ellipse 1"
-            android:src="@drawable/ellipse_1" />
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignBottom="@id/text"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="-40dp"
-            android:src="@drawable/ellipse_2" />
-    </RelativeLayout>
-
-    <com.yashkasera.livstory.SpeechProgressView
-        android:id="@+id/progress"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
-        android:background="@drawable/bg_bottomsheet"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageButton
-            android:id="@+id/record"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/selector_fab"
-            android:contentDescription="Microphone Button"
-            android:elevation="2dp"
-            android:padding="16dp"
-            android:src="@drawable/ic_baseline_mic_off_24" />
-
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:visibility="gone"
-            android:max="10"/>
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/playAutomatically"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Automatically Play Sound" />
-
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:visibility="gone">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:id="@+id/text"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sound : "
-                android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:hint="@string/press_mic_button_to_speak"
+                android:textColor="@color/cardTextColor"
+                android:textColorHint="#99FFFFFF"
+                android:textSize="30sp" />
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
 
-            <Button
-                android:id="@+id/play"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textView"
-                android:drawableLeft="@drawable/ic_baseline_play_24"
-                android:text="@string/play" />
-        </RelativeLayout>
 
-    </LinearLayout>
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/playAutomatically"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:checked="true"
+        android:text="@string/automatically_play_sound"
+        android:textColor="@color/textColor"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playAutomatically" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/speak"
+        app:backgroundTint="@color/fabTintColor"
+        app:fabCustomSize="72dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="36dp"
+        app:srcCompat="@drawable/ic_baseline_mic_none_24" />
+
+    <ImageView
+        android:id="@+id/pulse2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/input_pulse"
+        android:src="@drawable/fab_outer_pulse"
+        app:layout_constraintBottom_toBottomOf="@+id/record"
+        app:layout_constraintEnd_toEndOf="@+id/record"
+        app:layout_constraintStart_toStartOf="@+id/record"
+        app:layout_constraintTop_toTopOf="@+id/record" />
+
+    <ImageView
+        android:id="@+id/pulse1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/input_pulse"
+        android:src="@drawable/fab_inner_pulse"
+        app:layout_constraintBottom_toBottomOf="@+id/record"
+        app:layout_constraintEnd_toEndOf="@+id/record"
+        app:layout_constraintStart_toStartOf="@+id/record"
+        app:layout_constraintTop_toTopOf="@+id/record" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

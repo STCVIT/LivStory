@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -28,7 +27,8 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void startActivity() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             checkPermission();
         } else {
             Handler handler = new Handler();
@@ -40,25 +40,23 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void checkPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1001);
-        }
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.RECORD_AUDIO}, 1001);
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 1001) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 startActivity();
             } else {
                 View view = findViewById(android.R.id.content);
-                Snackbar.make(view, "Please allow microphone access to use this app", BaseTransientBottomBar.LENGTH_SHORT)
-                        .setAction("Allow", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                checkPermission();
-                            }
-                        })
+                Snackbar.make(view, "Please allow microphone access to use this app",
+                        BaseTransientBottomBar.LENGTH_SHORT)
+                        .setAction("Allow", v -> checkPermission())
                         .show();
             }
         }
