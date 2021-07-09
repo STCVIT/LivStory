@@ -1,6 +1,6 @@
 import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
+from firebase_admin import credentials,firestore
+# from firebase_admin import firestore
 
 cred = credentials.Certificate('./creds/google-services.json')
 firebase_admin.initialize_app(cred)
@@ -14,13 +14,10 @@ def get_audio(keywords: list):
         flag=0
         print(f"searching for sounds related to {word}")
         audio_ref = db.collection(u'sounds')
-        audio_docs = audio_ref.stream()
-        for audio_doc in audio_docs:
-            audio_doc = audio_doc.to_dict()
-            for reference_word in audio_doc['keywords']:
-                if word == reference_word:
-                    sounds.append(audio_doc['media'])
-                    flag=1
+        docs=audio_ref.where(u'keywords',u'array_contains',word).stream()
+        for doc in docs:
+            flag=1
+            sounds.append(doc.to_dict()['media'])
         if flag==0:
             sounds.append('')
     
@@ -28,6 +25,4 @@ def get_audio(keywords: list):
 
 
 if __name__ == "__main__":
-    for audio_doc in audio_docs:
-        print("finding docs")
-        print(f"{audio_doc.id} => {audio_doc.to_dict()}")
+    print("finding docs")
