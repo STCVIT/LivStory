@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LivStory</string>
+    <string name="press_mic_button_to_speak">Press mic button to speak</string>
+    <string name="speak">Speak</string>
+    <string name="input_pulse">Input Pulse</string>
+    <string name="automatically_play_sound">Automatically play sound</string>
+    <string name="close">Close</string>
+</resources>
