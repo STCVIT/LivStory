@@ -1,6 +1,5 @@
 
-### *Logo gif*
-### *Block Diagram*
+### *Logo*
 
 # Tech Stack Used :computer:
 
