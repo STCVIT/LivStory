@@ -15,4 +15,7 @@ public interface RetrofitInterface {
 
     @POST("/text")
     Call<ListResponseModel> getList(@Body RequestModel requestModel);
+
+    @POST("/report")
+    Call<Object> postWord(@Body RequestModel requestModel);
 }

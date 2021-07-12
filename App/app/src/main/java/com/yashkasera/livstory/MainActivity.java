@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                     } else {
                         Snackbar.make(textView, "Couldn't find any sounds! Please try again",
                                 BaseTransientBottomBar.LENGTH_SHORT)
+                                .setAction("Report", v -> reportFragment())
                                 .show();
                         progressBar.setVisibility(View.GONE);
                     }
@@ -135,6 +136,12 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 startListening();
             }
         });
+    }
+
+    private void reportFragment() {
+        FragmentManager fm = getSupportFragmentManager();
+        ReportFragment reportFragment = ReportFragment.newInstance();
+        reportFragment.show(fm, "ReportFragment");
     }
 
     public void getList(String text) {
@@ -151,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                     if (listResponseModel.getSounds().keySet().size() == 0) {
                         Snackbar.make(textView, "Couldn't find any sounds! Please try again",
                                 BaseTransientBottomBar.LENGTH_SHORT)
+                                .setAction("Report", v -> reportFragment())
                                 .show();
                     }
                     Log.d(TAG, "onResponse() returned: " + listResponseModel.getSounds().keySet());
@@ -166,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 progressBar.setVisibility(View.GONE);
                 Snackbar.make(textView, "Couldn't find any sounds! Please try again",
                         BaseTransientBottomBar.LENGTH_SHORT)
+                        .setAction("Report", v -> reportFragment())
                         .show();
             }
         });
@@ -302,6 +311,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         if (error == SpeechRecognizer.ERROR_NO_MATCH) {
             Snackbar.make(view, "Unable to understand. Please try again",
                     BaseTransientBottomBar.LENGTH_SHORT)
+                    .setAction("Report", v -> reportFragment())
                     .show();
         } else if (error == SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS) {
             Snackbar.make(view, "Please allow microphone access to use this app",

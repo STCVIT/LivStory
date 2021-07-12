@@ -12,7 +12,7 @@
         <item name="colorOnSecondary">@color/textColor</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:colorBackground">#130031</item>
-
+        <item name="android:keepScreenOn">true</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">#130031</item>
         <item name="android:windowLightStatusBar">false</item>
