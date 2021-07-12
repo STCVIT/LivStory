@@ -24,8 +24,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.yashkasera.livstoryuploaddata.R;
+import com.yashkasera.livstoryuploaddata.model.WordModel;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -51,6 +52,7 @@ public class UploadDataActivity extends AppCompatActivity {
     String[] keyword;
     ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
+    private WordModel wordModel;
 
     public static String bytesToHex(byte[] in) {
         final StringBuilder builder = new StringBuilder();
@@ -75,6 +77,9 @@ public class UploadDataActivity extends AppCompatActivity {
         name = findViewById(R.id.name);
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading");
+        wordModel = (WordModel) getIntent().getSerializableExtra("word");
+        if (wordModel != null)
+            keywords.setText(wordModel.getWord());
         db = FirebaseFirestore.getInstance();
         if (context.getPackageManager().checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE,
                 context.getPackageName()) != PackageManager.PERMISSION_GRANTED) {
@@ -154,6 +159,22 @@ public class UploadDataActivity extends AppCompatActivity {
                         keywords1.setError(null);
                         type1.setError(null);
                         uri = null;
+                        if (wordModel != null) {
+                            db.collection("report")
+                                    .document(getIntent().getStringExtra("from"))
+                                    .update(wordModel.getWord(), FieldValue.delete())
+                                    .addOnCompleteListener(task1 -> {
+                                        if (task1.isSuccessful()) {
+                                            Toast.makeText(context, "Keyword added successfully!", Toast.LENGTH_SHORT).show();
+                                            if (getIntent().getStringExtra("from").equalsIgnoreCase("model"))
+                                                MainActivity.modelWordModelArrayList.remove(wordModel);
+                                            else if (getIntent().getStringExtra("from").equalsIgnoreCase("user"))
+                                                MainActivity.userWordModelArrayList.remove(wordModel);
+                                            setResult(1, getIntent());
+                                            finish();
+                                        }
+                                    });
+                        }
                     } else {
                         Toast.makeText(context, "File could not be uploaded!", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();

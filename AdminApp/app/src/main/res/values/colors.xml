@@ -4,9 +4,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
     <color name="cardBackgroundColor">#2B3768</color>
-    <color name="fabTintColor">#2D396B</color>
     <color name="chipBackgroundColor">#1B2559</color>
-    <color name="cardTextColor">#94D0CC</color>
     <color name="textColor">#F1F1F1</color>
     <color name="textColorSecondary">#99F1F1F1</color>
     <color name="colorAccent">#FFCB4C</color>
