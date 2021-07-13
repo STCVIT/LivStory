@@ -3,6 +3,7 @@ package com.yashkasera.livstory;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,7 +28,14 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void startActivity() {
-        if (ContextCompat.checkSelfPermission(this,
+        SharedPreferences sharedPreferences = context.getSharedPreferences("LivStory", MODE_PRIVATE);
+        if (sharedPreferences.getBoolean("isFirstLaunch", true)) {
+            Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                startActivity(new Intent(context, WelcomeActivity.class));
+                finish();
+            }, 1000);
+        } else if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             checkPermission();
         } else {
@@ -35,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
             handler.postDelayed(() -> {
                 startActivity(new Intent(context, MainActivity.class));
                 finish();
-            }, 2500);
+            }, 1000);
         }
     }
 

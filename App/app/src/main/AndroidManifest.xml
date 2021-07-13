@@ -10,6 +10,7 @@
             <action android:name="android.speech.RecognitionService" />
         </intent>
     </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LivStory">
+        <activity android:name=".WelcomeActivity"></activity>
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait">

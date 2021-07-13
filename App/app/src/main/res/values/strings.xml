@@ -5,4 +5,10 @@
     <string name="input_pulse">Input Pulse</string>
     <string name="automatically_play_sound">Automatically play sound</string>
     <string name="close">Close</string>
+    <string name="on_boarding">On boarding</string>
+    <string name="onboarding1">Bring stories to life by adding sound effects that creates the most realistic experience.</string>
+    <string name="continue_btn">Continue</string>
+    <string name="onboarding2">"Creating the perfect ambience for bedtime stories and helps children enhance their imaginary skills. "</string>
+    <string name="next">Next</string>
+    <string name="submit">Submit</string>
 </resources>

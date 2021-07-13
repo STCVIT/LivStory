@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.LivStory" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimary">#9994D0CC</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -11,12 +11,12 @@
         <item name="android:fontFamily">@font/noto_sans</item>
         <item name="colorOnSecondary">@color/textColor</item>
         <item name="android:textColor">@color/textColor</item>
-        <item name="android:colorBackground">#130031</item>
+        <item name="android:colorBackground">@color/backgroundColor</item>
         <item name="android:keepScreenOn">true</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">#130031</item>
+        <item name="android:popupMenuStyle">@style/PopUp</item>
+         <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/backgroundColor</item>
         <item name="android:windowLightStatusBar">false</item>
-
     </style>
 
     <style name="AppTheme.FullScreenDialog" parent="Theme.MaterialComponents.Light.Dialog">
@@ -28,10 +28,16 @@
         <item name="android:fontFamily">@font/noto_sans</item>
         <item name="colorOnSecondary">@color/textColor</item>
         <item name="android:textColor">@color/textColor</item>
-        <item name="android:colorBackground">#130031</item>
+        <item name="android:colorBackground">@color/backgroundColor</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowBackground">@android:color/white</item>
-        <item name="android:statusBarColor" tools:targetApi="l">#130031</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/backgroundColor</item>
         <item name="actionMenuTextColor">@color/colorAccent</item>
+    </style>
+
+    <style name="PopUp" parent="Widget.MaterialComponents.PopupMenu">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="popupMenuBackground">@drawable/bg_menu</item>
+        <item name="android:dividerHeight">2dp</item>
     </style>
 </resources>

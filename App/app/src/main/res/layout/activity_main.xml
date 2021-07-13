@@ -5,16 +5,37 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:contentDescription="@string/app_name"
+        android:paddingTop="@dimen/margin_medium"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_text_logo" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@drawable/ic_text_logo" />
+
+        <ImageButton
+            android:id="@+id/options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:backgroundTint="@android:color/transparent"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="@dimen/margin_medium"
+            android:src="@drawable/ic_baseline_more_vert_24" />
+    </RelativeLayout>
 
 
     <androidx.cardview.widget.CardView
@@ -22,7 +43,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:cardBackgroundColor="@color/cardBackgroundColor"
         app:cardCornerRadius="6dp"
@@ -30,7 +50,7 @@
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo">
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
         <ScrollView
             android:layout_width="match_parent"

@@ -6,6 +6,7 @@ import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
@@ -16,6 +17,7 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.util.Log;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -25,6 +27,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -90,6 +94,24 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         });
         findViewById(R.id.cardView).setOnClickListener(v -> openDialog());
         findViewById(R.id.text).setOnClickListener(v -> openDialog());
+        findViewById(R.id.options).setOnClickListener(v -> {
+            Context wrapper = new ContextThemeWrapper(this, R.style.PopUp);
+            PopupMenu popup = new PopupMenu(wrapper, v);
+            MenuInflater inflater = popup.getMenuInflater();
+            inflater.inflate(R.menu.options, popup.getMenu());
+            popup.show();
+            popup.setOnMenuItemClickListener(item -> {
+                switch (item.getItemId()) {
+                    case R.id.help:
+                        startActivity(new Intent(context, WelcomeActivity.class));
+                        return true;
+                    case R.id.suggest:
+                        reportFragment();
+                        return true;
+                }
+                return false;
+            });
+        });
     }
 
     private void openDialog() {
@@ -259,6 +281,22 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 pulse2,
                 PropertyValuesHolder.ofFloat("scaleX", 1f),
                 PropertyValuesHolder.ofFloat("scaleY", 1f));
+
+        checkVolume();
+    }
+
+    private void checkVolume() {
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        int minVolume = 0;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+            minVolume = audioManager.getStreamMinVolume(AudioManager.STREAM_MUSIC);
+        }
+        if (currentVolume == minVolume) {
+            Snackbar.make(findViewById(android.R.id.content),
+                    "Please turn the volume up!", BaseTransientBottomBar.LENGTH_SHORT)
+                    .show();
+        }
     }
 
 
@@ -384,6 +422,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 mediaPlayer = new MediaPlayer();
             mediaPlayer.setDataSource(fis.getFD());
             mediaPlayer.prepare();
+            checkVolume();
             mediaPlayer.setOnPreparedListener(MediaPlayer::start);
             progressBar.setVisibility(View.VISIBLE);
             progressBar.setIndeterminate(false);
