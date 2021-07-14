@@ -19,10 +19,12 @@ import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     private ChipGroup chipGroup;
     private ProgressBar progressBar;
     private int exitCount = 0;
+    private Button suggest;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,11 +90,13 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 textView.setHint("Press mic button to start speaking...");
             } else {
                 isListening = true;
+                suggest.setVisibility(View.GONE);
                 speechRecognizer.startListening(speechRecognizerIntent);
                 textView.setText("");
                 textView.setHint("Listening...");
             }
         });
+        suggest = findViewById(R.id.suggest);
         findViewById(R.id.cardView).setOnClickListener(v -> openDialog());
         findViewById(R.id.text).setOnClickListener(v -> openDialog());
         findViewById(R.id.options).setOnClickListener(v -> {
@@ -142,10 +147,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                         textView.setText(getSpannableString(context, text, soundResponseModel.getSound()));
                         playMp3(mp3_64);
                     } else {
-                        Snackbar.make(textView, "Couldn't find any sounds! Please try again",
-                                BaseTransientBottomBar.LENGTH_SHORT)
-                                .setAction("Report", v -> reportFragment())
-                                .show();
+                        noSound();
                         progressBar.setVisibility(View.GONE);
                     }
                 }
@@ -177,12 +179,8 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 ListResponseModel listResponseModel = response.body();
                 if (listResponseModel != null) {
                     progressBar.setVisibility(View.GONE);
-                    if (listResponseModel.getSounds().keySet().size() == 0) {
-                        Snackbar.make(textView, "Couldn't find any sounds! Please try again",
-                                BaseTransientBottomBar.LENGTH_SHORT)
-                                .setAction("Report", v -> reportFragment())
-                                .show();
-                    }
+                    if (listResponseModel.getSounds().keySet().size() == 0)
+                        noSound();
                     Log.d(TAG, "onResponse() returned: " + listResponseModel.getSounds().keySet());
                     addSoundChips(listResponseModel.getSounds());
                     textView.setText(getSpannableString(context, text, listResponseModel.getSounds()));
@@ -194,10 +192,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             public void onFailure(Call<ListResponseModel> call, Throwable t) {
                 Log.e(TAG, "onFailure: ", t);
                 progressBar.setVisibility(View.GONE);
-                Snackbar.make(textView, "Couldn't find any sounds! Please try again",
-                        BaseTransientBottomBar.LENGTH_SHORT)
-                        .setAction("Report", v -> reportFragment())
-                        .show();
+                noSound();
             }
         });
     }
@@ -347,10 +342,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         textView.setHint("Press mic button to start speaking...");
         progressBar.setVisibility(View.GONE);
         if (error == SpeechRecognizer.ERROR_NO_MATCH) {
-            Snackbar.make(view, "Unable to understand. Please try again",
-                    BaseTransientBottomBar.LENGTH_SHORT)
-                    .setAction("Report", v -> reportFragment())
-                    .show();
+            noSound();
         } else if (error == SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS) {
             Snackbar.make(view, "Please allow microphone access to use this app",
                     BaseTransientBottomBar.LENGTH_SHORT)
@@ -359,6 +351,12 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                                     new String[]{Manifest.permission.RECORD_AUDIO}, 1001))
                     .show();
         }
+    }
+
+    private void noSound() {
+        Toast.makeText(context, "Couldn't find any sounds!", Toast.LENGTH_SHORT).show();
+        suggest.setVisibility(View.VISIBLE);
+        suggest.setOnClickListener(v -> reportFragment());
     }
 
     @Override
@@ -375,6 +373,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     }
 
     private void startListening() {
+        suggest.setVisibility(View.GONE);
         if (playAutomatically.isChecked()) {
             speechRecognizer.startListening(speechRecognizerIntent);
             textView.setText("");

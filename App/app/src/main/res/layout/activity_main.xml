@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor">
 
-
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -43,6 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:cardBackgroundColor="@color/cardBackgroundColor"
         app:cardCornerRadius="6dp"
@@ -92,9 +92,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/record"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playAutomatically" />
+        app:layout_constraintTop_toBottomOf="@+id/playAutomatically"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/record"
@@ -144,5 +146,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/suggest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium"
+        android:text="@string/suggest"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/record"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/record"
+        app:layout_constraintTop_toTopOf="@+id/record" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
