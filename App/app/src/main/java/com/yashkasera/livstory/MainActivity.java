@@ -41,6 +41,7 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.yashkasera.livstory.modal.ListResponseModel;
 import com.yashkasera.livstory.modal.RequestModel;
 import com.yashkasera.livstory.modal.SoundResponseModel;
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     private ProgressBar progressBar;
     private int exitCount = 0;
     private Button suggest;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -142,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                             .entrySet()
                             .iterator()
                             .next();
+                    logSearch(entry.getKey());
                     String mp3_64 = entry.getValue();
                     if (Objects.requireNonNull(mp3_64).length() > 0) {
                         textView.setText(getSpannableString(context, text, soundResponseModel.getSound()));
@@ -160,6 +163,12 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 startListening();
             }
         });
+    }
+
+    private void logSearch(String search) {
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.SEARCH_TERM, search);
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SEARCH, bundle);
     }
 
     private void reportFragment() {
@@ -229,6 +238,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
     private void addSoundChips(Map<String, String> sounds) {
         for (String key : sounds.keySet()) {
+            logSearch(key);
             Chip chip = new Chip(context);
             chip.setText(key);
             chip.setTextColor(ColorStateList.valueOf(ContextCompat.getColor(context,
@@ -246,10 +256,10 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     }
 
     private void init() {
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         playAutomatically = findViewById(R.id.playAutomatically);
         record = findViewById(R.id.record);
         textView = findViewById(R.id.text);
-//        textView.setMovementMethod(new LinkMovementMethod());
         chipGroup = findViewById(R.id.chipGroup);
         progressBar = findViewById(R.id.progressBar);
         playAutomatically.setOnCheckedChangeListener((v, isChecked) -> {

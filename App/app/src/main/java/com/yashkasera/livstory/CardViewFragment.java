@@ -31,6 +31,7 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.yashkasera.livstory.modal.ListResponseModel;
 import com.yashkasera.livstory.modal.RequestModel;
 import com.yashkasera.livstory.retrofit.RetrofitInstance;
@@ -60,6 +61,7 @@ public class CardViewFragment extends DialogFragment {
     private boolean isListening = false;
     private SpeechRecognizer speechRecognizer;
     private Intent speechRecognizerIntent;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     public CardViewFragment() {
     }
@@ -82,6 +84,11 @@ public class CardViewFragment extends DialogFragment {
         if (getArguments() != null) {
             text = getArguments().getString("text");
         }
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, "CardView");
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(requireContext());
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, bundle);
+
         View view = inflater.inflate(R.layout.fragment_cardview, container, false);
         view.findViewById(R.id.close).setOnClickListener(v -> dismiss());
         textView = view.findViewById(R.id.text);
