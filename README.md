@@ -38,6 +38,7 @@
 * <a href="https://github.com/a-ma-n"> Aman Ali Siddiqui </a>
 * <a href="https://github.com/Arya-Wadhwani07"> Arya Jay Wadhwani  </a>
 * <a href="https://github.com/DeepBlueS3a"> Deepesh Padala </a>
+* <a href="https://github.com/dwijaxo">  Dwija Patel </a>
 * <a href="https://github.com/yashkasera">  Yash Kasera </a>
 
 ## Connect with Us
