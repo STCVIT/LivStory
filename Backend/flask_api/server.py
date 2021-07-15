@@ -45,20 +45,6 @@ def text():
     return jsonify(response)
 
 
-@app.route('/texts', methods=["POST"])
-@cross_origin()
-def texts():
-    data = request.json
-    paragraph = data['text']
-    response = dict()
-#   keywords = keyword_extractor.extract_keywords(paragraph)
-    keywords = model.get_keywords(paragraph)
-    print(keywords)
-
-    audio_strings = functions.get_audio(keywords)
-    response["keywords"] = keywords  # audio_strings
-    return jsonify(response)
-
 
 @app.route('/report', methods=["POST"])
 @cross_origin()
