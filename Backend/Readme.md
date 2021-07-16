@@ -58,12 +58,6 @@
 </tbody>
 </table>
 
-## App
-
----
-## UI/UX
-
----
 ## Text Rank model 
 ---
 
