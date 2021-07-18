@@ -7,7 +7,6 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-#POST_PATH = '/text'
 
 @app.route('/', methods=["POST"])
 @cross_origin()
@@ -15,14 +14,13 @@ def home():
     data = request.json
     paragraph = data['text']
     response = dict()
-#   keywords = keyword_extractor.extract_keywords(paragraph)
     keywords = model.get_keywords(paragraph)
     print(keywords)
     if len(keywords) == 0:
         return jsonify([])
 
     audio_strings = functions.get_audio(keywords)
-    response["sound"] = dict()  # audio_strings
+    response["sound"] = dict()  
     response["sound"][keywords[0]] = audio_strings[0]
     return jsonify(response)
 
@@ -33,12 +31,11 @@ def text():
     data = request.json
     paragraph = data['text']
     response = dict()
-#   keywords = keyword_extractor.extract_keywords(paragraph)
     keywords = model.get_keywords(paragraph)
     print(keywords)
 
     audio_strings = functions.get_audio(keywords)
-    response["sounds"] = dict()  # audio_strings
+    response["sounds"] = dict() 
     for i in range(len(keywords)):
         if audio_strings[i] != '':
             response["sounds"][keywords[i]] = audio_strings[i]
