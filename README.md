@@ -27,7 +27,10 @@
 ## Getting Started
 
 * Download the app from the apk file above. <br>
-* Start reading your favourite story, and something real good happens as soon as you stop! <br>
+* On opening, the on-baording page will direct you to our main page. <br>
+* Click on the mike to speak out your story, following which appropriate sounds will be played. <br>
+* Toggle the automatic button off to play sounds as per your requirements manually. <br>
+* The sounds of words being played will also be underlined in yellow. <br>
 
 ## License
 
