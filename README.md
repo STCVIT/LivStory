@@ -31,6 +31,7 @@
 * Click on the mike to speak out your story, following which appropriate sounds will be played. <br>
 * Toggle the automatic button off to play sounds as per your requirements manually. <br>
 * The sounds of words being played will also be underlined in yellow. <br>
+* If unable to find the sounds, you can report to us the word and we can continue to make your experience exciting. <br>
 
 ## License
 
