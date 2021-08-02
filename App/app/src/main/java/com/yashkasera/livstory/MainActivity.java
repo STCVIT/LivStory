@@ -1,5 +1,7 @@
 package com.yashkasera.livstory;
 
+import static com.yashkasera.livstory.Functions.hexStringToByteArray;
+
 import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
@@ -19,7 +21,6 @@ import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -61,8 +62,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.internal.EverythingIsNonNull;
 
-import static com.yashkasera.livstory.Functions.hexStringToByteArray;
-
 public class MainActivity extends AppCompatActivity implements RecognitionListener {
     private static final String TAG = "MainActivity";
     private final Context context = this;
@@ -77,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     private ChipGroup chipGroup;
     private ProgressBar progressBar;
     private int exitCount = 0;
-    private Button suggest;
     private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
@@ -92,13 +90,11 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 textView.setHint("Press mic button to start speaking...");
             } else {
                 isListening = true;
-                suggest.setVisibility(View.GONE);
                 speechRecognizer.startListening(speechRecognizerIntent);
                 textView.setText("");
                 textView.setHint("Listening...");
             }
         });
-        suggest = findViewById(R.id.suggest);
         findViewById(R.id.cardView).setOnClickListener(v -> openDialog());
         findViewById(R.id.text).setOnClickListener(v -> openDialog());
         findViewById(R.id.options).setOnClickListener(v -> {
@@ -365,8 +361,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
     private void noSound() {
         Toast.makeText(context, "Couldn't find any sounds!", Toast.LENGTH_SHORT).show();
-        suggest.setVisibility(View.VISIBLE);
-        suggest.setOnClickListener(v -> reportFragment());
     }
 
     @Override
@@ -383,7 +377,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     }
 
     private void startListening() {
-        suggest.setVisibility(View.GONE);
         if (playAutomatically.isChecked()) {
             speechRecognizer.startListening(speechRecognizerIntent);
             textView.setText("");
@@ -406,7 +399,8 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     @Override
     public void onPause() {
         super.onPause();
-        speechRecognizer.stopListening();
+        if (speechRecognizer != null)
+            speechRecognizer.stopListening();
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
             mediaPlayer.reset();
@@ -463,4 +457,5 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             super.onBackPressed();
         }
     }
+
 }

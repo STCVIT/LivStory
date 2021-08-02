@@ -7,7 +7,9 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,14 +18,29 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+import com.yashkasera.livstory.modal.RequestModel;
+import com.yashkasera.livstory.modal.SoundResponseModel;
+import com.yashkasera.livstory.retrofit.RetrofitInstance;
+import com.yashkasera.livstory.retrofit.RetrofitInterface;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class SplashActivity extends AppCompatActivity {
-    Context context = this;
+    private static final String TAG = "SplashActivity";
+    private String text = "Warming up resources";
+    private Context context = this;
+    private TextView textView;
+    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        textView = findViewById(R.id.textView);
         startActivity();
     }
 
@@ -38,13 +55,51 @@ public class SplashActivity extends AppCompatActivity {
         } else if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             checkPermission();
-        } else {
-            Handler handler = new Handler();
-            handler.postDelayed(() -> {
+        } else
+            startContainer();
+    }
+
+    private void startContainer() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(() -> {
+                    count++;
+                    switch (count % 3) {
+                        case 0:
+                            textView.setText(text + ".");
+                            break;
+                        case 1:
+                            textView.setText(text + "..");
+                            break;
+                        case 2:
+                            textView.setText(text + "...");
+                            break;
+                        default:
+                            textView.setText(text + "");
+                            break;
+                    }
+                });
+            }
+        }, 0, 1000);
+        RetrofitInterface retrofitInterface = RetrofitInstance.getRetrofitInstance().create(RetrofitInterface.class);
+        Call<SoundResponseModel> call = retrofitInterface.getSound(new RequestModel("lion"));
+        call.enqueue(new Callback<SoundResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<SoundResponseModel> call, @NonNull retrofit2.Response<SoundResponseModel> response) {
                 startActivity(new Intent(context, MainActivity.class));
                 finish();
-            }, 1000);
-        }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<SoundResponseModel> call, @NonNull Throwable t) {
+                Log.e(TAG, "onFailure: ", t);
+                text = "Please make sure you are connected to the internet. Retrying";
+                timer.cancel();
+                startContainer();
+            }
+        });
     }
 
     private void checkPermission() {

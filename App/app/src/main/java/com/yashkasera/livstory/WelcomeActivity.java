@@ -44,7 +44,6 @@ public class WelcomeActivity extends AppCompatActivity {
         Animation slide_in_right = AnimationUtils.loadAnimation(this, R.anim.slide_in_right);
         next.setOnClickListener(v -> {
             position++;
-
             if (position < NoOfSlides) {
                 imageView.setImageDrawable(ContextCompat.getDrawable(context, images[position]));
                 imageView.startAnimation(slide_in_right);

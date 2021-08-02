@@ -22,7 +22,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/margin_medium"
             android:contentDescription="@string/app_name"
-            app:srcCompat="@drawable/ic_text_logo" />
+            app:srcCompat="@drawable/ic_logo_text" />
 
         <ImageButton
             android:id="@+id/options"
@@ -146,16 +146,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/suggest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_medium"
-        android:text="@string/suggest"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/record"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/record"
-        app:layout_constraintTop_toTopOf="@+id/record" />
+<!--    <Button-->
+<!--        android:id="@+id/suggest"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="@dimen/margin_medium"-->
+<!--        android:text="@string/suggest"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/record"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@id/record"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/record" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
