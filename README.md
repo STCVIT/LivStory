@@ -47,7 +47,7 @@
 
 ## Connect with Us
 
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/mstcvit/)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/stcvit/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/micvitvellore/mycompany/)
 
 [![Join Us](https://img.shields.io/badge/Join%20Us-STC-VIT)](https://stcvit.in/)
