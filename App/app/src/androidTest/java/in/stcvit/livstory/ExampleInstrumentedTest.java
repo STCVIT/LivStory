@@ -1,4 +1,4 @@
-package com.yashkasera.livstory;
+package in.stcvit.livstory;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.yashkasera.livstory", appContext.getPackageName());
+        assertEquals("com.stcvit.livstory", appContext.getPackageName());
     }
 }

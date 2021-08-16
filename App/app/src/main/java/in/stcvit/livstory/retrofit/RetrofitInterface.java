@@ -1,8 +1,8 @@
-package com.yashkasera.livstory.retrofit;
+package in.stcvit.livstory.retrofit;
 
-import com.yashkasera.livstory.modal.ListResponseModel;
-import com.yashkasera.livstory.modal.RequestModel;
-import com.yashkasera.livstory.modal.SoundResponseModel;
+import in.stcvit.livstory.modal.ListResponseModel;
+import in.stcvit.livstory.modal.RequestModel;
+import in.stcvit.livstory.modal.SoundResponseModel;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

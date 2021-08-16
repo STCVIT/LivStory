@@ -1,4 +1,4 @@
-package com.yashkasera.livstory;
+package in.stcvit.livstory;
 
 import android.speech.SpeechRecognizer;
 

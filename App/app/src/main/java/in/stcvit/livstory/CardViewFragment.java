@@ -1,4 +1,4 @@
-package com.yashkasera.livstory;
+package in.stcvit.livstory;
 
 import android.Manifest;
 import android.animation.ObjectAnimator;
@@ -32,10 +32,11 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.yashkasera.livstory.modal.ListResponseModel;
-import com.yashkasera.livstory.modal.RequestModel;
-import com.yashkasera.livstory.retrofit.RetrofitInstance;
-import com.yashkasera.livstory.retrofit.RetrofitInterface;
+
+import in.stcvit.livstory.modal.ListResponseModel;
+import in.stcvit.livstory.modal.RequestModel;
+import in.stcvit.livstory.retrofit.RetrofitInstance;
+import in.stcvit.livstory.retrofit.RetrofitInterface;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -49,7 +50,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.internal.EverythingIsNonNull;
 
-import static com.yashkasera.livstory.Functions.hexStringToByteArray;
+import static in.stcvit.livstory.Functions.hexStringToByteArray;
 
 public class CardViewFragment extends DialogFragment {
     private static final String TAG = "CardViewFragment";

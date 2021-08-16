@@ -1,4 +1,4 @@
-package com.yashkasera.livstory.modal;
+package in.stcvit.livstory.modal;
 
 import com.google.gson.annotations.SerializedName;
 

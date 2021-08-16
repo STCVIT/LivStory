@@ -1,4 +1,4 @@
-package com.yashkasera.livstory;
+package in.stcvit.livstory;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -15,9 +15,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.yashkasera.livstory.modal.RequestModel;
-import com.yashkasera.livstory.retrofit.RetrofitInstance;
-import com.yashkasera.livstory.retrofit.RetrofitInterface;
+
+import in.stcvit.livstory.modal.RequestModel;
+import in.stcvit.livstory.retrofit.RetrofitInstance;
+import in.stcvit.livstory.retrofit.RetrofitInterface;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -1,6 +1,6 @@
-package com.yashkasera.livstory;
+package in.stcvit.livstory;
 
-import static com.yashkasera.livstory.Functions.hexStringToByteArray;
+import static in.stcvit.livstory.Functions.hexStringToByteArray;
 
 import android.Manifest;
 import android.animation.ObjectAnimator;
@@ -43,11 +43,12 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.yashkasera.livstory.modal.ListResponseModel;
-import com.yashkasera.livstory.modal.RequestModel;
-import com.yashkasera.livstory.modal.SoundResponseModel;
-import com.yashkasera.livstory.retrofit.RetrofitInstance;
-import com.yashkasera.livstory.retrofit.RetrofitInterface;
+
+import in.stcvit.livstory.modal.ListResponseModel;
+import in.stcvit.livstory.modal.RequestModel;
+import in.stcvit.livstory.modal.SoundResponseModel;
+import in.stcvit.livstory.retrofit.RetrofitInstance;
+import in.stcvit.livstory.retrofit.RetrofitInterface;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -246,6 +247,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             chip.setTextStartPaddingResource(R.dimen.margin_medium);
             chip.setTextEndPaddingResource(R.dimen.margin_medium);
             chip.setChipStrokeWidthResource(R.dimen.strokeWidth);
+            chip.setClickable(true);
             chip.setOnClickListener(v -> playMp3(sounds.get(key)));
             chipGroup.addView(chip);
         }
