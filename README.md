@@ -3,10 +3,11 @@
 </p>
 <h1> LivStory</h1>
 
-> LivStory provides an immersive experience to our readers.Read your favourite story, we will enhance your experince by playing real-life sounds based on the content you just read!  How do we do that ? We use the magic of Artificial Intelligence to find out the most important words when you speak and play sounds accordingly. So go on, Get Reading! 
+> LivStory provides an immersive experience to our readers. Read your favourite story, we will enhance your experience by playing real-life sounds based on the content you just read!  How do we do that ? We use the magic of Artificial Intelligence to find out the most important words when you speak and play sounds accordingly. So go on, Get Reading! 
 ---
 [![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=appveyor)](https://documenter.getpostman.com/view/13490445/TzmCgt7c) 
 [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](https://www.figma.com/file/QbJzwqCaN36gMDSNiAWZRQ/LivStory?node-id=384%3A5485)
+[![](https://img.shields.io/badge/Privacy%20Policy-Click%20Here-blue)](https://liv-story.web.app/)
 
 [![Download ](https://img.shields.io/badge/-Get%20the%20link%20to%20the%20App-brightgreen)](https://github.com/STCVIT/LivStory/raw/75369c71e967ecc84d9dce80a4dbc86bee1b2d22/App/app/release/app-release.apk)
 
