@@ -24,8 +24,8 @@
 [![](https://img.shields.io/badge/-Want%20to%20know%20more%3F-orange)](https://github.com/STCVIT/LivStory/tree/main/Backend)
 
 ## Dependencies
-- Retrofit2 : To send a post request to the backend which contains the text of what the user said.
-- Lottie Animation : For the microphone animation in the splash screen
+- _Retrofit2_ : To send a post request to the backend which contains the text of what the user said.
+- _Lottie Animation_ : For the microphone animation in the splash screen
 
 ## Getting Started
 
