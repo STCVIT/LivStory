@@ -3,7 +3,14 @@
 </p>
 <h1> LivStory</h1>
 
-> LivStory provides an immersive experience to our readers. Read your favourite story, we will enhance your experience by playing real-life sounds based on the content you just read!  How do we do that ? We use the magic of Artificial Intelligence to find out the most important words when you speak and play sounds accordingly. So go on, Get Reading! 
+> 
+Imagine experiencing volcanoes erupting and wolves howling, making monotonous stories thrilling and exciting ?
+Well, Livstory here is encompassed with a wide variety of sound effects that provide exhilarating and 
+lively effects to stories being narrated in real time, using the power of NLP. So what are you waiting for, 
+Download Livstory to make stories come alive.
+
+Now Available on android.
+ 
 ---
 [![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=appveyor)](https://documenter.getpostman.com/view/13490445/TzmCgt7c) 
 [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](https://www.figma.com/file/QbJzwqCaN36gMDSNiAWZRQ/LivStory?node-id=625%3A2)
