@@ -29,7 +29,7 @@
 [![Download ](https://img.shields.io/badge/-Get%20the%20link%20to%20the%20App-brightgreen)](https://github.com/STCVIT/LivStory/raw/75369c71e967ecc84d9dce80a4dbc86bee1b2d22/App/app/release/app-release.apk)
 
 
-* Download the app apk by clicking on the _Get link to the app_ button given above. <br>
+* Download the app apk by clicking on the _Get link to the App_ button given above. <br>
 * Install the app on your device using the apk you just downloaded.
 * On opening,the On-boarding page directs you to our Homepage. <br>
 * Click on the microphone to speak, following which appropriate sounds will be played. <br>
