@@ -4,9 +4,11 @@
 <h1> LivStory</h1>
 
 > 
-Imagine experiencing volcanoes erupting and wolves howling, making monotonous stories thrilling and exciting ?
-Well, Livstory here is encompassed with a wide variety of sound effects that provide exhilarating and 
-lively effects to stories being narrated in real time, using the power of NLP. So what are you waiting for, 
+Imagine experiencing volcanoes erupting and wolves howling. Do you want to maeke your monotonous stories thrilling and exciting ?
+
+Livstory  is encompassed with a wide variety of sound effects that provide exhilarating and 
+lively effects to stories, narrated in real time, using the power of NLP. So what are you waiting for ? 
+
 Download Livstory to make stories come alive.
 
 Now Available on android.
