@@ -27,12 +27,12 @@
 
 ## Getting Started
 
-* Download the app from the apk file above. <br>
-* On opening, the on-baording page will direct you to our main page. <br>
-* Click on the mike to speak out your story, following which appropriate sounds will be played. <br>
-* Toggle the automatic button off to play sounds as per your requirements manually. <br>
-* The sounds of words being played will also be underlined in yellow. <br>
-* If unable to find the sounds, you can report to us the word and we can continue to make your experience exciting. <br>
+* Download the app from the apk file mentioned above. <br>
+* On opening,the On-boarding page directs you to our Homepage. <br>
+* Click on the microphone to speak, following which appropriate sounds will be played. <br>
+* Toggle the automatic button off to play sounds in any order, manually. <br>
+* The sounds of words being played will also be underlined. <br>
+* If you find a sound missing, kindly report the word, so we can continue to make your experience exhilarating. <br>
 
 ## License
 
