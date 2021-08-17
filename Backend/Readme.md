@@ -63,7 +63,7 @@
 
 * Colab Notebook
 
-https://colab.research.google.com/drive/1_xqcr9xeSGqSlQvtOST1OP1SpPo_nqPG?authuser=1#scrollTo=UQWnw8HmT5hA
+https://bit.ly/Algorithm_Colab_notebook
 
 * Based on the famous Google Page Rank Algorithm
 * It finds the rank of keywords using a node based lemma graph
