@@ -31,7 +31,8 @@ Now Available on android.
 
 ## Dependencies
 - _Retrofit2_ : To send a post request to the backend which contains the text of what the user said.
-- _Lottie Animation_ : For the microphone animation in the splash screen
+- _Firebase Analytics_ : To track and report website traffic
+- _Firebase Crashlytics_ : To track and report app crashes
 
 ## Getting Started
 
