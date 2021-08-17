@@ -78,7 +78,7 @@ https://bit.ly/Algorithm_Colab_notebook
 ---
 
 * The model was set up as a *Flask* API.
-* API was deployed on *Microsoft Azure*. on B1 Tier
+* API was deployed on *Microsoft Azure*. 
 * We used *Postman* for testing the API calls.
-* The API runs the Text-Rank ML Model and then sends a query in Firebase(Free Tier).
+* The API runs the Text-Rank ML Model and then sends a query in Firebase.
 * Accordng to the query, sounds are fetched from *Firebase* and returned back to our app as a result of the API.
