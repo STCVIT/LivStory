@@ -27,7 +27,7 @@
 
 ## Getting Started
 
-* Download the app from the apk file mentioned above. <br>
+* Download the app by clicking on the download button given above. <br>
 * On opening,the On-boarding page directs you to our Homepage. <br>
 * Click on the microphone to speak, following which appropriate sounds will be played. <br>
 * Toggle the automatic button off to play sounds in any order, manually. <br>
