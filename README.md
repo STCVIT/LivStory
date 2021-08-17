@@ -9,7 +9,6 @@
 [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](https://www.figma.com/file/QbJzwqCaN36gMDSNiAWZRQ/LivStory?node-id=384%3A5485)
 [![](https://img.shields.io/badge/Privacy%20Policy-Click%20Here-blue)](https://liv-story.web.app/)
 
-[![Download ](https://img.shields.io/badge/-Get%20the%20link%20to%20the%20App-brightgreen)](https://github.com/STCVIT/LivStory/raw/75369c71e967ecc84d9dce80a4dbc86bee1b2d22/App/app/release/app-release.apk)
 
 ## Features
 
@@ -26,6 +25,9 @@
 - Lottie Animation : For the microphone animation in the splash screen
 
 ## Getting Started
+
+[![Download ](https://img.shields.io/badge/-Get%20the%20link%20to%20the%20App-brightgreen)](https://github.com/STCVIT/LivStory/raw/75369c71e967ecc84d9dce80a4dbc86bee1b2d22/App/app/release/app-release.apk)
+
 
 * Download the app apk by clicking on the _Get link to the app_ button given above. <br>
 * Install the app on your device using the apk you just downloaded.
