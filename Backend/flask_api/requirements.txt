@@ -67,4 +67,4 @@ typer==0.3.2
 uritemplate==3.0.1
 urllib3==1.26.5
 wasabi==0.8.2
-Werkzeug==1.0.1
+Werkzeug==2.2.3
